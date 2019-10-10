@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../static/js/jquery-2.1.4.js"></script>
+	<title></title>
+
+</head>
+<body >
+	<div >
+			<p><input type="file" name="upload" id = "file"></p>
+			<p><input type="button" value="上传" id = "upload"></p>
+	</div>
+</body>
+<script>
+	jQuery(document).ready(function(){
+        $("#upload").on("click",function () {
+            alert($('#file').get(0).files[0]);
+            var formdata = new FormData();
+            formdata.append('file', $('#file').get(0).files[0]);
+            var fileName =  $("#file").val();
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:8080/uploadExcel',
+                contentType : false,
+                data : formdata,
+                processData : false,
+                dataType: "json",
+                success: function (data) {
+                },
+                error : function(data) {
+                }
+			});
+
+        });
+
+        });
+
+
+
+
+</script>
+</html>
